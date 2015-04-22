@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+
+    <ImageView
+        android:layout_width="371dp"
+        android:layout_height="175dp"
+        android:id="@+id/profile_pic"
+        android:src="@drawable/contact"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="NAME"
+        android:id="@+id/TextName"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:text="New Text"
+        android:id="@+id/idName"
+        android:layout_toRightOf="@+id/TextName"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_alignTop="@+id/TextName"
+        android:layout_alignBottom="@+id/TextName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Number"
+        android:id="@+id/TextNumber"
+        android:layout_below="@+id/TextName"
+        android:layout_alignLeft="@+id/TextName"
+        android:layout_alignStart="@+id/TextName"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:text="New Text"
+        android:id="@+id/idNumber"
+        android:layout_alignTop="@+id/TextNumber"
+        android:layout_alignLeft="@+id/idName"
+        android:layout_alignStart="@+id/idName"
+        android:layout_alignBottom="@+id/TextNumber" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call"
+        android:id="@+id/callButton"
+        android:layout_alignTop="@+id/idNumber"
+        android:layout_toRightOf="@+id/idNumber"
+        android:layout_toEndOf="@+id/idNumber" />
+
+
+</RelativeLayout>
