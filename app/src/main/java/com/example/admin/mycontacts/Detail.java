@@ -1,5 +1,6 @@
 package com.example.admin.mycontacts;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ public class Detail extends ActionBarActivity
     TextView textView2;
     String name;
     String number;
+    ContactDatabase db1;
+    Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +38,13 @@ public class Detail extends ActionBarActivity
 
         textView.setText(name);
         textView2.setText(number);
+
+        ctx = this.getApplicationContext();
+        db1 = new ContactDatabase(ctx);
+
+
+
+
 
         call= (Button) findViewById(R.id.callButton);
         call.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +89,7 @@ public class Detail extends ActionBarActivity
         Log.d("passing name",name);
         intent.putExtra("Number", number);
         Log.d("passing number",number);
+
         startActivity(intent);
 
         return super.onOptionsItemSelected(item);

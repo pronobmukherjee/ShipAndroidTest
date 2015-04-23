@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Edit extends ActionBarActivity
@@ -20,6 +21,7 @@ public class Edit extends ActionBarActivity
     Context ctx;
     String name;
     String number;
+    long rowID;
 
 
 
@@ -47,6 +49,8 @@ public class Edit extends ActionBarActivity
 
         ctx = this.getApplicationContext();
         db1 = new ContactDatabase(ctx);
+        rowID=db1.getRowID(number);
+        Toast.makeText(this,"Row id is ="+rowID, Toast.LENGTH_LONG).show();
 
         saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +60,7 @@ public class Edit extends ActionBarActivity
                 String newName=contactName.getText().toString();
                 String newNumber=contactNumber.getText().toString();
                 db1.update(newName,newNumber);
-                //db1.updateByRowId(newName,newNumber);
+                db1.updateByRowID(rowID,newName,newNumber);
 
 
             }

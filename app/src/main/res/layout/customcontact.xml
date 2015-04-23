@@ -19,9 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/Cicon"
-        android:layout_toEndOf="@+id/Cicon"
-        android:layout_marginLeft="102dp"
-        android:layout_marginStart="102dp" />
+        android:layout_toEndOf="@+id/Cicon" />
 
     <TextView
         android:layout_width="wrap_content"

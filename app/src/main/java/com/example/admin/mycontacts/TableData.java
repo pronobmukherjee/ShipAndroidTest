@@ -15,6 +15,6 @@ public class TableData implements BaseColumns
     public static final String CONTACT_CELLNO="cell_no";
     public static final String DATABASE_NAME="contact_info";
     public static final String TABLE_NAME="add_user";
-    public static final String UID="_id";
+    public static final String CONTACTS_COLUMN_ID="_id";
 
 }

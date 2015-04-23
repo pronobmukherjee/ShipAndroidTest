@@ -54,6 +54,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
         Contact current=list.get(position);
         Log.d("swaroop","onBindViewHolder called"+ position);
         holder.icon.setImageResource(R.drawable.contact);
+
+        //Picasso.with(context).load(" https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGgc4B417dk9XDKzA4VUM5f6S7jZVHJj72TtgKRNctCagaTCes")
+           //   .into(holder.icon);
+
+
         holder.name.setText(current.name);
         holder.cell_no.setText(current.cell_no);
 
@@ -105,8 +110,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
             Intent intent=new Intent(context,Detail.class);
             intent.putExtra("Name", current.name);
             intent.putExtra("Number", current.cell_no);
-
-
             context.startActivity(intent);
         }
 

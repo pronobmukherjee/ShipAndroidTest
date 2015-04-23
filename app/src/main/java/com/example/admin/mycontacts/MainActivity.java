@@ -71,6 +71,11 @@ public class MainActivity extends ActionBarActivity
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Cadapter.notifyDataSetChanged();
+    }
 
     public void addContact(View v)
     {
@@ -126,6 +131,7 @@ public class MainActivity extends ActionBarActivity
             dialog.show();
 
         }
+
 
 
     }

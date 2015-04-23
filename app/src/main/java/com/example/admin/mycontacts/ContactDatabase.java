@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ContactDatabase extends SQLiteOpenHelper
     Context context;
 
 
-    public String CREATE_QUERY ="create table " + TABLE_NAME +"("+ CONTACTS_COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT ,"+ CONTACT_NAME +" TEXT ,"+ CONTACT_CELLNO +" TEXT NOT NULL ."+ CONTACT_EMAIL +" TEXT NOT NULL .);";
+    public String CREATE_QUERY ="create table " + TABLE_NAME +"("+ CONTACTS_COLUMN_ID +" INTEGER PRIMARY KEY  ,"+ CONTACT_NAME +" TEXT ,"+ CONTACT_CELLNO +" TEXT NOT NULL );";
 
 
     public ContactDatabase(Context context) {
@@ -62,7 +63,8 @@ public class ContactDatabase extends SQLiteOpenHelper
         values.put(CONTACT_CELLNO,db2.cell_no);
 
         //to insert into database pass values in the insert method of sqlitedatabase
-        database.insert(TABLE_NAME,null,values);
+        database.insert(TABLE_NAME, null, values);
+
 
 
         Log.d("database entry","successfully added");
@@ -103,9 +105,11 @@ public class ContactDatabase extends SQLiteOpenHelper
             SQLiteDatabase database = this.getWritableDatabase();
             String s1 = CONTACT_NAME+"=" + "'"+name.trim()+"'";
 
+
             ContentValues args = new ContentValues();
             args.put(CONTACT_CELLNO, number);
             database.update(TABLE_NAME, args, s1, null);
+            Toast.makeText(context,"Edited successfully",Toast.LENGTH_LONG).show();
             database.close();
         }
         catch(Exception e)
@@ -114,9 +118,30 @@ public class ContactDatabase extends SQLiteOpenHelper
         }
 
     }
-   public void updateByRowId(String name,String number)
-    {
 
+   public long getRowID(String number)
+    {
+        SQLiteDatabase database = this.getReadableDatabase();
+        String[] columns = new String[]{CONTACTS_COLUMN_ID};
+        Cursor c = database.query(TABLE_NAME, columns, CONTACT_CELLNO+"=" + "'"+number.trim()+"'", null, null, null, null);
+        c.moveToFirst();
+
+        long rowid = c.getLong(c.getColumnIndex(CONTACTS_COLUMN_ID));
+        //long rowid = c.getColumnIndex(CONTACTS_COLUMN_ID);
+        System.out.println("row id is"+rowid);
+
+        return rowid;
     }
 
+    public void updateByRowID(long id,String name,String number)
+    {
+        long rowID=id;
+        String s1 = CONTACTS_COLUMN_ID+"=" + "'"+rowID+"'";
+        SQLiteDatabase database=this.getWritableDatabase();
+        ContentValues content=new ContentValues();
+        content.put(CONTACT_NAME,name);
+        content.put(CONTACT_CELLNO,number);
+        database.update(TABLE_NAME,content,s1,null);
+
+    }
 }
