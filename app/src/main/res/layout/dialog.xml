@@ -6,40 +6,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="NAME"
+        android:text="NAME:-"
+        android:singleLine="true"
         android:id="@+id/NAME1"
+        android:layout_marginLeft="20dp"
         android:textColor="#000000"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/editText1"
-        android:layout_toStartOf="@+id/editText1" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="38dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Cell no"
+        android:text="Cell No:-"
+        android:singleLine="true"
         android:textColor="#000000"
         android:id="@+id/cell_no1"
-        android:layout_marginTop="61dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/editText1"
-        android:layout_alignRight="@+id/NAME1"
-        android:layout_alignEnd="@+id/NAME1" />
+        android:layout_alignLeft="@+id/NAME1"
+        android:layout_alignStart="@+id/NAME1" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText1"
-        android:layout_alignTop="@+id/NAME1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginEnd="40dp" />
+        android:layout_alignBottom="@+id/NAME1"
+        android:layout_toRightOf="@+id/cell_no1"
+        android:layout_toEndOf="@+id/cell_no1" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
@@ -48,24 +51,5 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignStart="@+id/editText1" />
 
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Cancel"-->
-        <!--android:id="@+id/button1"-->
-        <!--android:layout_below="@+id/cell_no1"-->
-        <!--android:layout_alignLeft="@+id/cell_no1"-->
-        <!--android:layout_alignStart="@+id/cell_no1"-->
-        <!--android:layout_marginTop="62dp" />-->
 
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Done"-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_alignTop="@+id/button1"-->
-        <!--android:layout_alignRight="@+id/editText2"-->
-        <!--android:layout_alignEnd="@+id/editText2"-->
-        <!--android:layout_marginRight="40dp"-->
-        <!--android:layout_marginEnd="40dp" />-->
 </RelativeLayout>

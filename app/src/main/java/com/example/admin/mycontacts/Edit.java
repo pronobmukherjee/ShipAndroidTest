@@ -1,6 +1,7 @@
 package com.example.admin.mycontacts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,14 +15,14 @@ import android.widget.Toast;
 public class Edit extends ActionBarActivity
 
 {
-    EditText contactName;
-    EditText contactNumber;
-    Button   saveChanges;
-    ContactDatabase db1;
-    Context ctx;
-    String name;
-    String number;
-    long rowID;
+    EditText            contactName;
+    EditText            contactNumber;
+    Button              saveChanges;
+    ContactDatabase     db1;
+    Context             ctx;
+    String              name;
+    String              number;
+    long                rowID;
 
 
 
@@ -31,11 +32,11 @@ public class Edit extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        contactName= (EditText) findViewById(R.id.editName);
-        contactNumber= (EditText) findViewById(R.id.editNumber);
+        contactName     = (EditText) findViewById(R.id.editName);
+        contactNumber   = (EditText) findViewById(R.id.editNumber);
 
-        name = getIntent().getExtras().getString("Name");
-        number = getIntent().getExtras().getString("Number");
+        name    = getIntent().getExtras().getString("Name");
+        number  = getIntent().getExtras().getString("Number");
         Log.d("name",name);
         Log.d("number",number);
 
@@ -47,9 +48,9 @@ public class Edit extends ActionBarActivity
 
         saveChanges= (Button) findViewById(R.id.buttonSave);
 
-        ctx = this.getApplicationContext();
-        db1 = new ContactDatabase(ctx);
-        rowID=db1.getRowID(number);
+        ctx     = this.getApplicationContext();
+        db1     = new ContactDatabase(ctx);
+        rowID   =db1.getRowID(number);
         Toast.makeText(this,"Row id is ="+rowID, Toast.LENGTH_LONG).show();
 
         saveChanges.setOnClickListener(new View.OnClickListener() {
@@ -57,20 +58,18 @@ public class Edit extends ActionBarActivity
             public void onClick(View view)
             {
 
-                String newName=contactName.getText().toString();
+                String newName  =contactName.getText().toString();
                 String newNumber=contactNumber.getText().toString();
                 db1.update(newName,newNumber);
                 db1.updateByRowID(rowID,newName,newNumber);
 
-
+                Intent returnIntent=new Intent();
+                returnIntent.putExtra("name",newName);
+                returnIntent.putExtra("number",newNumber);
+                setResult(1, returnIntent);
+                finish();
             }
         });
 
     }
-
-
-
-
-
-
 }

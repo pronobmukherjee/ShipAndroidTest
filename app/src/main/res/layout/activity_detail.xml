@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="NAME"
+        android:singleLine="true"
         android:id="@+id/TextName"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -33,6 +34,9 @@
         android:layout_height="90dp"
         android:text="New Text"
         android:id="@+id/idName"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/TextName"
         android:layout_marginLeft="64dp"
         android:layout_marginStart="64dp"
@@ -44,6 +48,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Number"
+        android:singleLine="true"
         android:id="@+id/TextNumber"
         android:layout_below="@+id/TextName"
         android:layout_alignLeft="@+id/TextName"
@@ -54,20 +59,24 @@
         android:layout_width="100dp"
         android:layout_height="90dp"
         android:text="New Text"
+        android:textStyle="bold"
         android:id="@+id/idNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_alignTop="@+id/TextNumber"
         android:layout_alignLeft="@+id/idName"
         android:layout_alignStart="@+id/idName"
         android:layout_alignBottom="@+id/TextNumber" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="call"
         android:id="@+id/callButton"
-        android:layout_alignTop="@+id/idNumber"
-        android:layout_toRightOf="@+id/idNumber"
-        android:layout_toEndOf="@+id/idNumber" />
+        android:layout_below="@+id/idNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp" />
 
 
 </RelativeLayout>

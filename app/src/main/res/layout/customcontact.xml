@@ -7,8 +7,7 @@
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:id="@+id/Cicon"
-        />
+        android:id="@+id/contacticon" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +17,10 @@
         android:id="@+id/Cname"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/Cicon"
-        android:layout_toEndOf="@+id/Cicon" />
+        android:layout_toRightOf="@+id/contacticon"
+        android:layout_toEndOf="@+id/contacticon"
+        android:layout_marginLeft="31dp"
+        android:layout_marginStart="31dp" />
 
     <TextView
         android:layout_width="wrap_content"

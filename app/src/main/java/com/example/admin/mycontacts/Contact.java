@@ -8,6 +8,7 @@ public class Contact
     public String name;
     public String cell_no;
 
+
     Contact(){}
 
     public Contact(String name, String cell_no) {

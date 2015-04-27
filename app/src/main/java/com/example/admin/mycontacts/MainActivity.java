@@ -21,23 +21,16 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity
 
 {
-    RecyclerView Crecyclerview;
-    //you have to specify an adapter and a layout manager
-    //To reuse (or recycle) a view, a layout manager may ask the adapter to replace the contents of the view with a different element from the dataset.
-    RecyclerView.Adapter Cadapter;
-    RecyclerView.LayoutManager Cmanager;
+    RecyclerView                    cRecyclerview;
+    RecyclerView.Adapter            cAdapter;
+    RecyclerView.LayoutManager      cManager;
 
-    Button Addbtn;
-
-
-
-
-    //CREATE DATABASE OBJECT
+    Button          Addbtn;
     ContactDatabase db1;
-    EditText edit1 = null;
-    EditText edit2 = null;
-    Context ctx = this;
-    List<Contact> data = new ArrayList<Contact>();
+    EditText        contactName = null;
+    EditText        contactNumber = null;
+    Context         ctx = this;
+    List<Contact>   data = new ArrayList<Contact>();
 
 
     @Override
@@ -45,42 +38,29 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Addbtn = (Button) findViewById(R.id.btn1);
-
-
-
-
-        db1 = new ContactDatabase(ctx);
-
-        Crecyclerview = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-        //RecyclerView can perform several optimizations if it can know in advance that changes in adapter content cannot change the size of the RecyclerView itself.
-        Crecyclerview.setHasFixedSize(true);
-
-        Cmanager = new LinearLayoutManager(this);
-        //set layout manager to the recyclerview
-        Crecyclerview.setLayoutManager(Cmanager);
-
-        data = db1.getAllRecords();
-        Cadapter = new ContactAdapter(ctx, data);
-
-        //Toast.makeText(getApplicationContext(),"ok data sent",Toast.LENGTH_LONG).show();
-        Crecyclerview.setAdapter(Cadapter);
+        Addbtn        = (Button) findViewById(R.id.btn1);
+        db1           = new ContactDatabase(ctx);
+								cRecyclerview = (RecyclerView) findViewById(R.id.my_recycler_view);
+        cRecyclerview.setHasFixedSize(true);
+							 cManager      = new LinearLayoutManager(this);
+        cRecyclerview.setLayoutManager(cManager);
+							 data          = db1.getAllRecords();
+        cAdapter      = new ContactAdapter(ctx, data);
+        cRecyclerview.setAdapter(cAdapter);
 
 
     }
-
-
     @Override
     protected void onResume() {
         super.onResume();
-        Cadapter.notifyDataSetChanged();
+        data     = db1.getAllRecords();
+        cAdapter = new ContactAdapter(ctx, data);
+        cRecyclerview.setAdapter(cAdapter);
+
     }
 
     public void addContact(View v)
     {
-
-
         if (v.getId() == R.id.btn1)
         {
             //Toast.makeText(getApplicationContext(),"okk",Toast.LENGTH_LONG).show();
@@ -90,30 +70,27 @@ public class MainActivity extends ActionBarActivity
 
             View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialog, null);
 
-            edit1 = (EditText) view.findViewById(R.id.editText1);
-            edit2 = (EditText) view.findViewById(R.id.editText2);
+            contactName   = (EditText) view.findViewById(R.id.editText1);
+            contactNumber = (EditText) view.findViewById(R.id.editText2);
 
-            edit1.setTextColor(Color.BLACK);
-            edit2.setTextColor(Color.BLACK);
+            contactName.setTextColor(Color.BLACK);
+            contactNumber.setTextColor(Color.BLACK);
 
             dialog.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface d, int i) {
 
                     Contact contact = new Contact();
-                    contact.name = edit1.getText().toString();
-                    contact.cell_no = edit2.getText().toString();
-
-                    //now that you have object insert this object into database
+                    contact.name = contactName.getText().toString();
+                    contact.cell_no = contactNumber.getText().toString();
                     db1 = new ContactDatabase(ctx);
                     db1.insert(contact);
 
                     Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_LONG).show();
 
                     data = db1.getAllRecords();
-                    Cadapter = new ContactAdapter(ctx, data);
-                    //Toast.makeText(getApplicationContext(),"ok data sent",Toast.LENGTH_LONG).show();
-                    Crecyclerview.setAdapter(Cadapter);
+                    cAdapter = new ContactAdapter(ctx, data);
+                    cRecyclerview.setAdapter(cAdapter);
 
                     d.dismiss();
                 }
@@ -131,11 +108,7 @@ public class MainActivity extends ActionBarActivity
             dialog.show();
 
         }
-
-
-
     }
-
 
 }
 

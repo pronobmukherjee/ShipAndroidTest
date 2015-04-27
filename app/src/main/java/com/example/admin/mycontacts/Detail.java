@@ -10,18 +10,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Detail extends ActionBarActivity
 {
-    Button call;
-    TextView textView;
-    TextView textView2;
-    String name;
-    String number;
-    ContactDatabase db1;
+    Button              call;
+    TextView            textView;
+    TextView            textView2;
+    ImageView           contactImage;
+    String              name;
+    String              number;
+    ContactDatabase     db1;
     Context ctx;
 
     @Override
@@ -30,20 +32,19 @@ public class Detail extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        name = getIntent().getStringExtra("Name");
-        number = getIntent().getStringExtra("Number");
+        name    = getIntent().getStringExtra("Name");
+        number  = getIntent().getStringExtra("Number");
 
-        final TextView textView = (TextView) findViewById(R.id.idName);
-        final TextView textView2 = (TextView) findViewById(R.id.idNumber);
+        textView        = (TextView) findViewById(R.id.idName);
+        textView2       = (TextView) findViewById(R.id.idNumber);
+        contactImage    = (ImageView) findViewById(R.id.profile_pic);
 
+        contactImage.setImageResource(R.drawable.image);
         textView.setText(name);
         textView2.setText(number);
 
         ctx = this.getApplicationContext();
         db1 = new ContactDatabase(ctx);
-
-
-
 
 
         call= (Button) findViewById(R.id.callButton);
@@ -70,8 +71,6 @@ public class Detail extends ActionBarActivity
 
             }
         });
-
-
      }
 
     @Override
@@ -82,15 +81,42 @@ public class Detail extends ActionBarActivity
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 1) {
+                String result = data.getStringExtra("name");
+                String number = data.getStringExtra("number");
+                final TextView textView = (TextView) findViewById(R.id.idName);
+                final TextView textView2 = (TextView) findViewById(R.id.idNumber);
+                textView.setText(name);
+                textView2.setText(number);
+
+            }
+
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        Intent intent=new Intent(Detail.this,Edit.class);
-        intent.putExtra("Name", name);
-        Log.d("passing name",name);
-        intent.putExtra("Number", number);
-        Log.d("passing number",number);
+       if(item.getItemId()==R.id.item2) {
+           Intent intent = new Intent(Detail.this, Edit.class);
+           intent.putExtra("Name", name);
+           Log.d("passing name", name);
+           intent.putExtra("Number", number);
+           Log.d("passing number", number);
 
-        startActivity(intent);
+           //startActivity(intent);
+          startActivityForResult(intent,1);
+									}
+       else if(item.getItemId()==R.id.item3)
+       {
+           long rowIdentity;
+           Toast.makeText(getApplicationContext(),"Deleting contact",Toast.LENGTH_LONG).show();
+           rowIdentity=db1.getRowID(number);
+           db1.deleteContact(rowIdentity);
+           Toast.makeText(getApplicationContext(),"Contact deleted",Toast.LENGTH_LONG).show();
+
+       }
 
         return super.onOptionsItemSelected(item);
     }

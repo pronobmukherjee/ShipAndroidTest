@@ -30,6 +30,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
     ContactDatabase db1;
 
 
+
+
     public ContactAdapter(Context context,List<Contact> list)
     {
         this.context=context;
@@ -49,60 +51,47 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(ContactAdapter.MyViewHolder holder,final int position)
+    public void onBindViewHolder(final MyViewHolder holder,final int position)
     {
         Contact current=list.get(position);
         Log.d("swaroop","onBindViewHolder called"+ position);
-        holder.icon.setImageResource(R.drawable.contact);
-
-        //Picasso.with(context).load(" https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGgc4B417dk9XDKzA4VUM5f6S7jZVHJj72TtgKRNctCagaTCes")
-           //   .into(holder.icon);
-
-
+        //String imageURL="http://api.androidhive.info/json/movies/6.jpg";
+        String imageurl="http://api.androidhive.info/json/movies/6.jpg";
+        Picasso.with(context).setLoggingEnabled(true);
+        Picasso picasso = Picasso.with(context);
+        picasso.load(imageurl).fit().into(holder.icon);
         holder.name.setText(current.name);
-        holder.cell_no.setText(current.cell_no);
-
+        holder.cellNo.setText(current.cell_no);
     }
-
-
-
     @Override
     public int getItemCount()
     {
        return list.size();
     }
 
-    @Override
-    public long getItemId(int position)
-    {
-        return super.getItemId(position);
-        
-
-    }
-
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
-        TextView name;
-        TextView cell_no;
-        ImageView icon;
+							 TextView    name;
+        TextView    cellNo;
+        ImageView   icon;
 
 
         public MyViewHolder(View itemView)
         {
             super(itemView);
             itemView.setOnClickListener(this);
-            icon= (ImageView) itemView.findViewById(R.id.Cicon);
-            Picasso.with(context).load(" https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGgc4B417dk9XDKzA4VUM5f6S7jZVHJj72TtgKRNctCagaTCes").resize(40,40).into(icon);
+            icon= (ImageView) itemView.findViewById(R.id.contacticon);
+            Picasso.with(context).load("http://api.androidhive.info/json/movies/6.jpg").resize(40,40).into(icon);
             name=(TextView)itemView.findViewById(R.id.Cname);
-            cell_no=(TextView)itemView.findViewById(R.id.Ccell_no);
+            cellNo=(TextView)itemView.findViewById(R.id.Ccell_no);
         }
 
 
         @Override
         public void onClick(View view)
         {
-            int itemPosition =  getAdapterPosition();
+
+            int itemPosition     =  getAdapterPosition();
             Log.d("Item Position = ",""+itemPosition);
             Contact current=list.get(itemPosition);
             Log.d("current.cell_no = ", ""+current.cell_no);
@@ -115,6 +104,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
 
 
     }
- }
+
+
+}
 
 

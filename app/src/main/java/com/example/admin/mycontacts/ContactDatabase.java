@@ -61,12 +61,7 @@ public class ContactDatabase extends SQLiteOpenHelper
         ContentValues values=new ContentValues();
         values.put(CONTACT_NAME,db2.name);
         values.put(CONTACT_CELLNO,db2.cell_no);
-
-        //to insert into database pass values in the insert method of sqlitedatabase
         database.insert(TABLE_NAME, null, values);
-
-
-
         Log.d("database entry","successfully added");
 
      }
@@ -142,6 +137,16 @@ public class ContactDatabase extends SQLiteOpenHelper
         content.put(CONTACT_NAME,name);
         content.put(CONTACT_CELLNO,number);
         database.update(TABLE_NAME,content,s1,null);
+
+    }
+
+    public void deleteContact(long id)
+    {
+        long idToDelete=id;
+        String s1=CONTACTS_COLUMN_ID+"=" + "'"+idToDelete+"'";
+        SQLiteDatabase database=this.getWritableDatabase();
+        database.delete(TABLE_NAME,s1,null);
+        Log.d("data deleted","successfully");
 
     }
 }
