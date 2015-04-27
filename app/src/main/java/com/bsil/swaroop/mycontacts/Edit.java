@@ -1,4 +1,4 @@
-package com.example.admin.mycontacts;
+package com.bsil.swaroop.mycontacts;
 
 import android.content.Context;
 import android.content.Intent;

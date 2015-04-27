@@ -1,9 +1,9 @@
-package com.example.admin.mycontacts;
+package com.bsil.swaroop.mycontacts;
 
 import android.provider.BaseColumns;
 
 /**
- * Created by admin on 15/04/15.
+ * Created by swaroop on 15/04/15.
  */
 
 //same as contract ...Define your column names,database name and table name

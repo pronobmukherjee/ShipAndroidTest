@@ -1,4 +1,4 @@
-package com.example.admin.mycontacts;
+package com.bsil.swaroop.mycontacts;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 15/04/15.
+ * Created by swaroop on 15/04/15.
  */
 public class ContactDatabase extends SQLiteOpenHelper
 {

@@ -1,4 +1,4 @@
-package com.example.admin.mycontacts;
+package com.bsil.swaroop.mycontacts;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by admin on 15/04/15.
+ * Created by swaroop on 15/04/15.
  */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHolder>
 {
